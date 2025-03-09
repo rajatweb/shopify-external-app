@@ -5,8 +5,10 @@ import path, { join } from "path";
 import serveStatic from "serve-static";
 import { createServer as createViteServer } from "vite";
 import fs from "fs";
+import { WebSocketServer } from "ws";
 
 const PORT = parseInt(process.env.PORT || "3000", 10);
+const WS_PORT = parseInt(process.env.WS_PORT || "3001", 10);
 const isDev = process.env.NODE_ENV === "development";
 const app = express();
 
@@ -16,6 +18,23 @@ const STATIC_PATH = isDev
 
 // Express middleware to parse JSON payloads
 app.use(express.json());
+
+// Create WebSocket server
+const wss = new WebSocketServer({ port: WS_PORT });
+wss.on("connection", (ws) => {
+  console.log("New WebSocket connection established");
+
+  ws.on("message", (message) => {
+    console.log("Received: ", message.toString());
+    ws.send(`Echo: ${message}`);
+  });
+
+  ws.on("close", () => {
+    console.log("WebSocket connection closed");
+  });
+});
+
+console.log(`WebSocket server running on ws://localhost:${WS_PORT}`);
 
 async function startServer() {
   // Shopify Authentication Routes
@@ -47,7 +66,7 @@ async function startServer() {
         middlewareMode: true,
         hmr: {
           server: app.listen(PORT, () => {
-            console.log(`Dev server running on localhost:${PORT}`);
+            console.log(`Dev server running on http://localhost:${PORT}`);
           }),
         },
       },
@@ -74,7 +93,7 @@ async function startServer() {
     });
     // Start the server
     app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+      console.log(`Server is running on http://localhost:${PORT}`);
     });
   }
 }
