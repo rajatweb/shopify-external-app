@@ -1,4 +1,4 @@
-import { webhooksTopic } from "../utils/shopify";
+import { webhooksTopic } from "../server/utils/shopify";
 
 const webhookWriter = (config: any) => {
   let subscriptionsArray = [];

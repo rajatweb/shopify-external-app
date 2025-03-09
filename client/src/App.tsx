@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       <Button>
-        WebSocket Connection: {isConnected ? "Connected" : "Disconnected"}
+        WebSocket Connection: {isConnected ? "Yes Connected" : "Disconnected"}
       </Button>
       <div>
         <a href="https://vite.dev" target="_blank">

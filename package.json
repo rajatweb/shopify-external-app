@@ -13,14 +13,11 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@prisma/client": "^6.4.1",
     "@shopify/shopify-app-express": "^5.0.13",
     "@types/express": "^5.0.0",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-redux": "^9.2.0",
-    "react-router-dom": "^7.3.0",
     "ts-node": "^10.9.2",
     "ws": "^8.18.1"
   },
@@ -33,6 +30,7 @@
     "@vitejs/plugin-react": "^4.3.4",
     "cross-env": "^7.0.3",
     "nodemon": "^3.1.9",
+    "prisma": "^6.4.1",
     "typescript": "^5.8.2",
     "vite": "^6.2.1"
   }

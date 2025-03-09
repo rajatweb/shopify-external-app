@@ -9,7 +9,9 @@ const shopify = shopifyApp({
     apiSecretKey: process.env.SHOPIFY_API_SECRET || "",
     scopes: process.env.SHOPIFY_API_SCOPES?.split(",") || ["read_orders"],
     hostScheme: "https",
-    hostName: process.env.SHOPIFY_APP_URL?.replace('https://', '') || `localhost:${process.env.PORT}`,
+    hostName:
+      process.env.SHOPIFY_APP_URL?.replace("https://", "") ||
+      `localhost:${process.env.PORT}`,
     isEmbeddedApp: false,
     forceRedirect: false,
     apiVersion: LATEST_API_VERSION,
